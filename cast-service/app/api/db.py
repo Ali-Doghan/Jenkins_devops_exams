@@ -1,14 +1,14 @@
 import os
-
 from sqlalchemy import (Column, Integer, MetaData, String, Table,
                         create_engine, ARRAY)
-
 from databases import Database
 
-DATABASE_URI = os.getenv('DATABASE_URI')
+
+DATABASE_URI = os.getenv('DATABASE_URI') or "sqlite:///./test.db"
 
 engine = create_engine(DATABASE_URI)
 metadata = MetaData()
+
 
 casts = Table(
     'casts',
