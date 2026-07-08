@@ -43,10 +43,10 @@ pipeline {
                         cat $KUBECONFIG > ~/.kube/config
                         cp charts/values-movie.yaml movie-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" movie-values.yml
-                        helm upgrade --install movie-app charts --values=movie-values.yml --namespace dev
+                        helm upgrade --install movie-app charts --values=movie-values.yml --set service.nodePort=30020 --namespace dev
                         cp charts/values-cast.yaml cast-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" cast-values.yml
-                        helm upgrade --install cast-app charts --values=cast-values.yml --namespace dev
+                        helm upgrade --install cast-app charts --values=cast-values.yml --set service.nodePort=30021 --namespace dev
                     '''
                 }
             }
@@ -63,10 +63,10 @@ pipeline {
                         cat $KUBECONFIG > ~/.kube/config
                         cp charts/values-movie.yaml movie-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" movie-values.yml
-                        helm upgrade --install movie-app charts --values=movie-values.yml --namespace qa
+                        helm upgrade --install movie-app charts --values=movie-values.yml --set service.nodePort=30022 --namespace qa
                         cp charts/values-cast.yaml cast-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" cast-values.yml
-                        helm upgrade --install cast-app charts --values=cast-values.yml --namespace qa
+                        helm upgrade --install cast-app charts --values=cast-values.yml --set service.nodePort=30023 --namespace qa
                     '''
                 }
             }
@@ -83,10 +83,10 @@ pipeline {
                         cat $KUBECONFIG > ~/.kube/config
                         cp charts/values-movie.yaml movie-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" movie-values.yml
-                        helm upgrade --install movie-app charts --values=movie-values.yml --namespace staging
+                        helm upgrade --install movie-app charts --values=movie-values.yml --set service.nodePort=30024 --namespace staging
                         cp charts/values-cast.yaml cast-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" cast-values.yml
-                        helm upgrade --install cast-app charts --values=cast-values.yml --namespace staging
+                        helm upgrade --install cast-app charts --values=cast-values.yml --set service.nodePort=30025 --namespace staging
                     '''
                 }
             }
@@ -109,10 +109,10 @@ pipeline {
                         cat $KUBECONFIG > ~/.kube/config
                         cp charts/values-movie.yaml movie-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" movie-values.yml
-                        helm upgrade --install movie-app charts --values=movie-values.yml --namespace prod
+                        helm upgrade --install movie-app charts --values=movie-values.yml --set service.nodePort=30026 --namespace prod
                         cp charts/values-cast.yaml cast-values.yml
                         sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" cast-values.yml
-                        helm upgrade --install cast-app charts --values=cast-values.yml --namespace prod
+                        helm upgrade --install cast-app charts --values=cast-values.yml --set service.nodePort=30027 --namespace prod
                     '''
                 }
             }
