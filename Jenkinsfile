@@ -94,7 +94,7 @@ pipeline {
         stage('Deployment in prod'){
             when {
                 expression {
-                    return sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim() == 'master'
+                    return env.GIT_BRANCH == 'origin/master' || env.GIT_BRANCH == 'master'
                 }
             }
             environment {
